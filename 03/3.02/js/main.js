@@ -17,8 +17,13 @@ d3.json("data/buildings.json").then(function(data){
     });
 
     var y = d3.scaleLinear()
-        .domain([0, 828])
-        .range([0, 400]);
+        .domain([0, 828]) // raw data that we put into our scale -> e.g. 414
+        .range([0, 400]); // output range (i.e. screen pixels) -> e.g. 200
+    // we can also do scales between colours, e.g. a linear scale between red and blue
+    console.log(y(414))
+    
+    // to perform the reverse transform we can call y.invert()
+    console.log(y.invert(400))
 
     var rects = svg.selectAll("rect")
             .data(data)
@@ -30,7 +35,7 @@ d3.json("data/buildings.json").then(function(data){
             })
             .attr("width", 40)
             .attr("height", function(d){
-                return y(d.height);
+                return y(d.height); // passing height into scaleLinear so fits on canvas
             })
             .attr("fill", function(d) {
                 return "grey";
