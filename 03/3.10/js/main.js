@@ -64,11 +64,11 @@ d3.json("data/buildings.json").then(function(data){
         .attr("y", "10")
         .attr("x", "-5")
         .attr("text-anchor", "end")
-        .attr("transform", "rotate(-40)");
+        .attr("transform", "rotate(-40)"); // rotate ticks
 
     var yAxisCall = d3.axisLeft(y)
-        .ticks(3)
-        .tickFormat(function(d){
+        .ticks(3) // only want there to be 3 ticks
+        .tickFormat(function(d){ // show all values in metres
             return d + "m";
         });
     g.append("g")
